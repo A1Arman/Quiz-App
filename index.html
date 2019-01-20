@@ -9,42 +9,17 @@
 </head>
 <body>
     <header>
-        <img src="imgs/icons8-nfl-100.png" id="main-icon">
-        <!-- h1 will be removed once start button is clicked
+        <img src="imgs/nfl-icon.png" id="main-icon">
         <h1 id="start-heading">NFL Knowledge Tester</h1>
-        -->
        <!-- This will be called in once start button is clicked -->
         <section class="main-header-section">
-            <h3 id="questions-remaining">Questions remaining: <span id=".js-question-left">10</span></h3>
-            <h3 id="score">Score: <span id=".js-score-total">0</span></h3>
         </section>
     </header>
-    <main>
-        <!-- starting page section
+    <main class="js-main-container">
         <section class="main-starter-section">
-            <h2>Quiz to test your NFL knowledge</h2>
-            <button type="button" class="start-button">Take the Quiz!</button>
+            <h2>The Ultimate Quiz to Test Your NFL Knowledge!!</h2>
+            <button type="button" id="start-button">Take the Quiz!</button>
         </section>
-        -->
-       <!-- This will be rendered when start is clicked and changed every time a new question is asked -->
-        <form class="question-container">
-            <fieldset>
-                <h2 class="question">Placeholder Question Text?</h2>
-                <div class="answer-container">
-                    <input type="radio" class="answer" name="Question_1" >
-                    <label for="taste_2">I like banana</label>
-                </div>
-                <div class="answer-container">
-                    <input type="radio" class="answer" name="Question_1" >
-                    <label for="taste_2">I like banana</label>
-                </div>
-                <div class="answer-container">
-                <input type="radio" class="answer" name="Question_1" >
-                <label for="taste_2">I like banana</label>
-                </div>
-                <button type="submit" class="answer" id="main-submit">Submit</button>
-            </fieldset>
-        </form>
     </main>
     <script
   src="https://code.jquery.com/jquery-3.3.1.js"

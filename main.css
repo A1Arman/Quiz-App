@@ -1,5 +1,12 @@
 * {
     box-sizing: border-box;
+    background: url('./imgs/football-field.png') no-repeat center center fixed;
+    color: white;
+}
+
+h2 {
+    margin-top: 75px;
+    text-align: center;
 }
 
 fieldset {
@@ -30,15 +37,31 @@ fieldset {
     margin: 2.5% 5%;
 }
 
-.answer-container {
-    border: 1px solid black;
-    margin: 25px;
+label {
+    border: 1px solid whitesmoke;
+    display: block;
+    margin-top: 25px;
 }
 
-#main-submit {
+#question-submit {
     width: 100px;
     height: 50px;
     border-radius: 10%;
+}
+
+#start-heading {
+    text-align: center;
+}
+
+#start-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    height: 150px;
+    border-radius: 10%;
+    font-size: 20px;
+
 }
 
 @media screen and (min-width: 700px) {
