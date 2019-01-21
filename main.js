@@ -118,52 +118,56 @@ function generateQuestionForm(question) {
     </form>`
 }
 
-function generateQuestion(question) {
-    const questions = question.map((question) => generateQuestionForm(question));
-    return questions.toString(); 
-}
-
-function renderQuestions() {
-    const questionForm = generateQuestion(QUESTIONS);
-    $('.js-main-container').html(questionForm);
-    handleNextButton();
-}
 
 function renderScores() {
-    let currentQuestion = 1;
-    let currentScore = 0;
-    const score = `
-        <h3 id="questions-remaining">Questions remaining: <span id="js-question-left">${currentQuestion} /10</span></h3>
-        <h3 id="score">Score: <span id="js-score-total">${currentScore}</span></h3>`
-    $('.main-header-section').html(score);
+    $('#start-button').on('click dblclick', event => {
+        let currentQuestionCounter = 1;
+        let currentScore = 0;
+        const score = `
+            <h3 id="questions-remaining">Question: <span id="js-question-left">${currentQuestionCounter} /10</span></h3>
+            <h3 id="score">Score: <span id="js-score-total">${currentScore}</span></h3>`
+        $('.main-header-section').html(score);
+    });
 }
 
 function removeStarterHeading() {
-    $('#start-heading').remove();
+    $('#start-button').on('click dblclick', event => {
+        $('#start-heading').remove();
+    })
 }
 
 function removeStarterSection() {
-    $('.main-starter-section').remove();
+    $('#start-button').on('click dblclick', event => {
+        $('.main-starter-section').remove();
+    })
 }
 
 function handleNextButton() {
-    $('.js-main-container').on('#question-submit', 'submit', event => {
+    $('.js-main-container').on('submit', '.question-container', event => {
        event.preventDefault();
     });
 }
 
+function renderQuestion(questionIndex) {
+    const question = QUESTIONS[questionIndex];
+    let questionForm = generateQuestionForm(question);
+    $('.js-main-container').html(questionForm);
+}
+
 function handleStartButton() {
+    let currentQuestion = 0;
     $('#start-button').click(event => {
-        event.preventDefault();
-        removeStarterSection();
-        removeStarterHeading();
-        renderScores();
-        renderQuestions();
+        renderQuestion(currentQuestion);
     });
 }
 
 function handleQuizApp() {
     handleStartButton();
+    handleNextButton();
+    removeStarterSection();
+    removeStarterHeading();
+    renderScores();
+    renderQuestions();
 }
 
 $(handleQuizApp);
