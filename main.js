@@ -99,21 +99,21 @@ function generateQuestionForm(question) {
         <fieldset>
         <legend class="question">${question.question}</legend>
         <label for="answer1">
-            <input type="radio" class="answer" id="answer1" name="Question_1" required>
+            <input type="radio" class="answer" id="answer1" name="Question_1" value= "${question.answers[0]}" required>
             ${question.answers[0]}
         </label>
         <br>
         <label for="answer2">
-            <input type="radio" id="answer2" class="answer" name="Question_1" required>
+            <input type="radio" id="answer2" class="answer" name="Question_1" value ="${question.answers[1]}" required>
             ${question.answers[1]}
         </label>
         <br>
         <label for="answer3">
-            <input type="radio" class="answer" id="answer3" name="Question_1" required>
+            <input type="radio" class="answer" id="answer3" name="Question_1" value="${question.answers[2]}"  required>
             ${question.answers[2]} 
         </label>
         <br>
-        <button type="submit" class="answer" id="question-submit">Next Question</button>
+        <button type="submit" class="answer" id="question-submit">Submit</button>
         </fieldset>
     </form>`
 }
@@ -142,9 +142,19 @@ function removeStarterSection() {
     })
 }
 
-function handleNextButton() {
+function handleCheckAnswer(questionIndex) {
     $('.js-main-container').on('submit', '.question-container', event => {
        event.preventDefault();
+       const answerVal = $( "input[type=radio][name=Question_1]:checked" ).val();
+       console.log(QUESTIONS[questionIndex].correctAnswer);
+       if(answerVal === QUESTIONS[questionIndex].correctAnswer) 
+       {
+            rightAnswer();
+       }
+       else 
+       {
+            wrongAnswer();
+       }
     });
 }
 
@@ -161,13 +171,19 @@ function handleStartButton() {
     });
 }
 
+function rightAnswer() {
+    $('.question-form').remove();
+}
+
 function handleQuizApp() {
     handleStartButton();
-    handleNextButton();
+    handleCheckAnswer();
     removeStarterSection();
     removeStarterHeading();
     renderScores();
-    renderQuestions();
+    renderQuestion();
+    rightAnswer();
+    wrongAnswer();
 }
 
 $(handleQuizApp);
