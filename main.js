@@ -90,43 +90,44 @@ const QUESTIONS = [
         ],
         correctAnswer: 'Chicago Bears and Arizona Cardinals',
     }
-]
+];
 
+let currentQuestion = 0;
+let currentScore = 0;
+let currentQuestionCounter = 1;
 
-function generateQuestionForm(question) {
+function generateQuestionForm(questionArr) {
     return `
     <form class="question-container">
         <fieldset>
-        <legend class="question">${question.question}</legend>
+        <legend class="question">${questionArr.question}</legend>
         <label for="answer1">
-            <input type="radio" class="answer" id="answer1" name="Question_1" value= "${question.answers[0]}" required>
-            ${question.answers[0]}
+            <input type="radio" class="answer" id="answer1" name="Question_1" value= "${questionArr.answers[0]}" required>
+            ${questionArr.answers[0]}
         </label>
         <br>
         <label for="answer2">
-            <input type="radio" id="answer2" class="answer" name="Question_1" value ="${question.answers[1]}" required>
-            ${question.answers[1]}
+            <input type="radio" id="answer2" class="answer" name="Question_1" value ="${questionArr.answers[1]}" required>
+            ${questionArr.answers[1]}
         </label>
         <br>
         <label for="answer3">
-            <input type="radio" class="answer" id="answer3" name="Question_1" value="${question.answers[2]}"  required>
-            ${question.answers[2]} 
+            <input type="radio" class="answer" id="answer3" name="Question_1" value="${questionArr.answers[2]}"  required>
+            ${questionArr.answers[2]} 
         </label>
         <br>
         <button type="submit" class="answer" id="question-submit">Submit</button>
         </fieldset>
-    </form>`
+    </form>`;
 }
 
 
 function renderScores() {
     $('#start-button').on('click dblclick', event => {
-        let currentQuestionCounter = 1;
-        let currentScore = 0;
-        const score = `
+        const scoreMenu = `
             <h3 id="questions-remaining">Question: <span id="js-question-left">${currentQuestionCounter} /10</span></h3>
-            <h3 id="score">Score: <span id="js-score-total">${currentScore}</span></h3>`
-        $('.main-header-section').html(score);
+            <h3 id="score">Score: <span id="js-score-total">${currentScore}</span></h3>`;
+        $('.main-header-section').html(scoreMenu);
     });
 }
 
@@ -142,12 +143,11 @@ function removeStarterSection() {
     })
 }
 
-function handleCheckAnswer(questionIndex) {
+function handleCheckAnswer() {
     $('.js-main-container').on('submit', '.question-container', event => {
        event.preventDefault();
        const answerVal = $( "input[type=radio][name=Question_1]:checked" ).val();
-       console.log(QUESTIONS[questionIndex].correctAnswer);
-       if(answerVal === QUESTIONS[questionIndex].correctAnswer) 
+       if(answerVal === QUESTIONS[currentQuestion].correctAnswer) 
        {
             rightAnswer();
        }
@@ -165,14 +165,69 @@ function renderQuestion(questionIndex) {
 }
 
 function handleStartButton() {
-    let currentQuestion = 0;
     $('#start-button').click(event => {
+        currentQuestion = 0;
         renderQuestion(currentQuestion);
     });
 }
 
 function rightAnswer() {
-    $('.question-form').remove();
+    currentScore++;
+    const correct = 
+    `<section role="status" class="status-page">
+    <h2>TOUCHDOWN!</h2>
+    <h3>You are correct!</h3>
+    <iframe src="https://giphy.com/embed/9J586eKzRoW6zjY23y" width="400" height="248" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/nfl-football-sport-indianapolis-colts-9J586eKzRoW6zjY23y"></a></p>
+    <button id="next-question">Next Question</button>
+    </section>`;
+    $('#js-score-total')[0].innerHTML = currentScore;
+    $('.question-container').remove();
+    $('.js-main-container').html(correct);
+}
+
+function wrongAnswer() {
+    const wrong = 
+    `<section role="status" class="status-page">
+    <h2>Interception!</h2>
+    <h3>You are Incorrect!</h3>
+    <iframe src="https://giphy.com/embed/l0ExpYJiW867TwI9i" width="400" height="268" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/nfl-football-new-england-patriots-l0ExpYJiW867TwI9i"></a></p>
+    <button type="button" id="next-question">Next Question</button>
+    </section>`;
+    $('.question-container').remove();
+    $('.js-main-container').html(wrong);
+}
+
+function handleNextQuestionButton() {
+        $('.js-main-container').on('click', 'button#next-question', event => {
+            currentQuestionCounter++;
+            currentQuestion++;
+            if(currentQuestion < QUESTIONS.length) {
+                $('.status-page').remove();
+                $('#js-question-left')[0].innerHTML = `${currentQuestionCounter} / 10`;
+                renderQuestion(currentQuestion);
+            }
+            else {
+                    finalScreen();
+            }
+        });
+}
+
+function restartButton() {
+    $('.js-main-container').on('click', '#restart-button', event => {
+        $('.final-section').remove();
+        location.reload();
+    });
+}
+
+function finalScreen() {
+    const finalSection =
+    `<section class="final-page">
+    <h2>Congratulations!!</h2>
+    <h3>Your final score was ${currentScore}</h3>
+    <button type="button" id="restart-button">Restart Quiz</button>
+    </section>`;
+    $('.status-page').remove();
+    $('.js-main-container').html(finalSection);
 }
 
 function handleQuizApp() {
@@ -181,9 +236,8 @@ function handleQuizApp() {
     removeStarterSection();
     removeStarterHeading();
     renderScores();
-    renderQuestion();
-    rightAnswer();
-    wrongAnswer();
+    handleNextQuestionButton();
+    restartButton();
 }
 
 $(handleQuizApp);

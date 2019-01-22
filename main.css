@@ -1,11 +1,24 @@
 * {
     box-sizing: border-box;
-    background: url('./imgs/football-field.png') no-repeat center center fixed;
-    color: white;
+    color: whitesmoke;
+    background: url('imgs/football-field.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+h1 {
+    color: black;
 }
 
 h2 {
-    margin-top: 75px;
+    font-size: 2rem;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.5rem;
     text-align: center;
 }
 
@@ -25,6 +38,7 @@ fieldset {
 }
 
 .question-container {
+    margin-top: 5%;
     margin-left: 2.5%;
     margin-right: 2.5%;
 }
@@ -35,6 +49,12 @@ fieldset {
 
 .answer {
     margin: 2.5% 5%;
+}
+
+.giphy-embed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 label {
@@ -49,11 +69,18 @@ label {
     border-radius: 10%;
 }
 
+#next-question {
+    width: 175px;
+    height: 50px;
+    border-radius: 10%;
+    margin-left: 14%;
+}
+
 #start-heading {
     text-align: center;
 }
 
-#start-button {
+#start-button, #restart-button {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -61,7 +88,15 @@ label {
     height: 150px;
     border-radius: 10%;
     font-size: 20px;
+}
 
+#start-button:hover, label:hover, #question-submit:hover, #next-question:hover, #restart-button:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+}
+
+#questions-remaining, #js-question-left, #js-score-total, #score, .question {
+    color: black;
 }
 
 @media screen and (min-width: 700px) {
