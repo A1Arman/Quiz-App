@@ -98,7 +98,7 @@ let currentQuestionCounter = 1;
 
 function generateQuestionForm(questionArr) {
     return `
-    <form class="question-container">
+    <form class="question-container" role='quiz-container'>
         <fieldset>
         <legend class="question">${questionArr.question}</legend>
         <label for="answer1">
@@ -221,7 +221,7 @@ function restartButton() {
 
 function finalScreen() {
     const finalSection =
-    `<section class="final-page">
+    `<section class="final-page" role="final page">
     <h2>Congratulations!!</h2>
     <h3>Your final score was ${currentScore}</h3>
     <button type="button" id="restart-button">Restart Quiz</button>

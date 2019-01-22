@@ -9,6 +9,7 @@
 }
 
 h1 {
+    padding-top: 7.5%;
     color: black;
 }
 
@@ -44,6 +45,7 @@ fieldset {
 }
 
 .question {
+    font-size: 1.2rem;
     text-align: center;
 }
 
@@ -101,6 +103,7 @@ label {
 
 @media screen and (min-width: 700px) {
     .question-container {
+        margin-top: 2.5%;
         margin-left: 10%;
         margin-right: 10%;
     }
@@ -109,5 +112,28 @@ label {
         width: 150px;
         height: 55px;
         border-radius: 10%;
+    }
+
+    .question {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .question-container {
+        margin-top: 2.5%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    #next-question {
+        width: 175px;
+        height: 50px;
+        border-radius: 10%;
+        margin-left: 20%;
+    }
+
+    .question {
+        font-size: 1.5rem;
     }
 }
