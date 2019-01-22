@@ -177,7 +177,7 @@ function rightAnswer() {
     `<section role="status" class="status-page">
     <h2>TOUCHDOWN!</h2>
     <h3>You are correct!</h3>
-    <iframe src="https://giphy.com/embed/9J586eKzRoW6zjY23y" width="400" height="248" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/nfl-football-sport-indianapolis-colts-9J586eKzRoW6zjY23y"></a></p>
+    <iframe src="https://giphy.com/embed/9J586eKzRoW6zjY23y" width="300" height="225" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/nfl-football-sport-indianapolis-colts-9J586eKzRoW6zjY23y"></a></p>
     <button id="next-question">Next Question</button>
     </section>`;
     $('#js-score-total')[0].innerHTML = currentScore;
@@ -190,7 +190,7 @@ function wrongAnswer() {
     `<section role="status" class="status-page">
     <h2>Interception!</h2>
     <h3>You are Incorrect!</h3>
-    <iframe src="https://giphy.com/embed/l0ExpYJiW867TwI9i" width="400" height="268" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/nfl-football-new-england-patriots-l0ExpYJiW867TwI9i"></a></p>
+    <iframe src="https://giphy.com/embed/l0ExpYJiW867TwI9i" width="300" height="225" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/nfl-football-new-england-patriots-l0ExpYJiW867TwI9i"></a></p>
     <button type="button" id="next-question">Next Question</button>
     </section>`;
     $('.question-container').remove();
