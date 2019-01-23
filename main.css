@@ -97,7 +97,7 @@ label {
 
 #start-button:hover, label:hover, #question-submit:hover, #next-question:hover, #restart-button:hover {
     cursor: pointer;
-    transform: scale(1.03);
+    transform: scale(1.015);
 }
 
 #questions-remaining, #js-question-left, #js-score-total, #score, .question {
